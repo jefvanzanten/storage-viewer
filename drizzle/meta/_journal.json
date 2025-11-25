@@ -1,0 +1,27 @@
+{
+  "version": "7",
+  "dialect": "sqlite",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "6",
+      "when": 1763969148073,
+      "tag": "0000_broad_rhino",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "6",
+      "when": 1763971708853,
+      "tag": "0001_nervous_lizard",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1763972451280,
+      "tag": "0002_old_surge",
+      "breakpoints": true
+    }
+  ]
+}
