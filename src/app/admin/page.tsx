@@ -4,6 +4,12 @@ import { AddStorageItem, GetProductId } from "@/storageService";
 import { StorageInfo } from "@/types";
 import { useState } from "react";
 
+// This is the admin page I use to add products.
+
+// TODO:
+// This is very primitive and I need to cleanup a lot of the code.
+// A lot of repeating code that needs to go to css classes. Also needs more seperation of concerns
+
 export default function Home() {
   const [productQuery, setProductQuery] = useState("");
   const [suggestions, setSuggestions] = useState<string[]>([]);
