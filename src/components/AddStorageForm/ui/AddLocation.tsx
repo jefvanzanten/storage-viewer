@@ -8,22 +8,11 @@ type AddLocationProps = {
 };
 
 function AddLocation({ parentLocations }: AddLocationProps) {
-  const [currentParentLocation, setCurrentParentLocation] =
-    useState<Location>();
-  const [currentSubLocation, setCurrentSubLocation] = useState<Location>();
   const [subLocations, setSubLocations] = useState<Location[]>([]);
 
   const onParentLocationChange = async (parentLocationId: number) => {
-    const parent = parentLocations?.find((loc) => loc.id === parentLocationId);
-    setCurrentParentLocation(parent);
-
     const subs = await GetAllSubLocationsForParent(parentLocationId);
     setSubLocations(subs);
-  };
-
-  const onSubLocationChange = async (subLocationId: number) => {
-    const sub = subLocations?.find((loc) => loc.id === subLocationId);
-    setCurrentSubLocation(sub);
   };
 
   return (
@@ -37,7 +26,7 @@ function AddLocation({ parentLocations }: AddLocationProps) {
       />
       <LocationSelector
         type="subLocationId"
-        onChange={onSubLocationChange}
+        onChange={() => {}}
         locations={subLocations}
         openForm={() => {}}
         required={false}
