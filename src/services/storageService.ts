@@ -2,8 +2,7 @@
 
 import { db } from "@/db";
 import { StorageItem, StorageInfo } from "@/types";
-import { productInfo, storageInfo } from "@/db/schema";
-import { like, eq } from "drizzle-orm";
+import { storageInfo } from "@/db/schema";
 
 async function GetAllStorage(): Promise<StorageItem[]> {
   try {
@@ -55,35 +54,6 @@ async function GetAllStorage(): Promise<StorageItem[]> {
   }
 }
 
-// Get all proudtcs based on query
-async function GetAllProducts(query: string): Promise<string[]> {
-  const products = await db
-    .select({ name: productInfo.name })
-    .from(productInfo)
-    .where(like(productInfo.name, `%${query}%`));
-
-  return products.map((p) => p.name);
-}
-
-// Get productId by name
-async function GetProductId(name: string): Promise<number | undefined> {
-  try {
-    const existing = await db
-      .select({ id: productInfo.id })
-      .from(productInfo)
-      .where(eq(productInfo.name, name))
-      .limit(1);
-
-    if (existing.length > 0) {
-      return existing[0].id;
-    }
-
-    return undefined;
-  } catch (error: unknown) {
-    console.log(error);
-  }
-}
-
 // Add product and other storage info data to the database
 async function AddStorageItem(data: StorageInfo) {
   try {
@@ -93,4 +63,4 @@ async function AddStorageItem(data: StorageInfo) {
   }
 }
 
-export { GetAllStorage, GetAllProducts, GetProductId, AddStorageItem };
+export { GetAllStorage, AddStorageItem };
