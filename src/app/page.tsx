@@ -1,5 +1,5 @@
 import StorageItemCard from "@/components/StorageItemCard";
-import { GetAllStorage } from "@/storageService";
+import { GetAllStorage } from "@/services/storageService";
 
 export default async function Home() {
   const data = await GetAllStorage();
@@ -7,8 +7,11 @@ export default async function Home() {
   console.log("storageinfo:", data);
   return (
     <div className="flex flex-col w-full h-screen justify-center items-center gap-4">
-      <input className="bg-white w-[30em] px-4 py-2" defaultValue="Zoek..." />
-      <div>
+      <input
+        className="bg-white w-[31em] px-4 py-2 text-black"
+        defaultValue="Zoek..."
+      />
+      <div className="flex flex-col gap-4">
         {data.map((item) => (
           <StorageItemCard key={item.id} storageInfoItem={item} />
         ))}

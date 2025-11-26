@@ -27,10 +27,15 @@ type ProductInfo = {
   imgUrl?: string;
 };
 
+type Location = {
+  id: number;
+  name: string;
+};
+
 type LocationInfo = {
   id: number;
   name: string;
   parentName?: string;
 };
 
-export type { StorageInfo, StorageItem, ProductInfo };
+export type { StorageInfo, StorageItem, ProductInfo, Location };

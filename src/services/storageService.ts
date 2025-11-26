@@ -2,7 +2,7 @@
 
 import { db } from "@/db";
 import { StorageItem, StorageInfo } from "@/types";
-import { productInfo, storageInfo } from "./db/schema";
+import { productInfo, storageInfo } from "@/db/schema";
 import { like, eq } from "drizzle-orm";
 
 async function GetAllStorage(): Promise<StorageItem[]> {

@@ -28,15 +28,15 @@ const productInfo = sqliteTable("product_info", {
   categoryId: int("category").references(() => category.id),
 });
 
-const location = sqliteTable("location", {
+const locationTable = sqliteTable("location", {
   id: int().primaryKey({ autoIncrement: true }),
   name: text().notNull().unique(),
 });
 
 const locationInfo = sqliteTable("location_info", {
   id: int().primaryKey({ autoIncrement: true }),
-  locationId: int("location_id").references(() => location.id),
-  parentId: int("parent_id").references(() => location.id),
+  locationId: int("location_id").references(() => locationTable.id),
+  parentId: int("parent_id").references(() => locationTable.id),
 });
 
 const storageInfo = sqliteTable("storage_info", {
@@ -44,7 +44,7 @@ const storageInfo = sqliteTable("storage_info", {
   quantity: int().notNull(),
   expiration_date: text(),
   locationId: int("location")
-    .references(() => location.id)
+    .references(() => locationTable.id)
     .notNull(),
   productInfoId: int("product_info")
     .references(() => productInfo.id)
@@ -57,9 +57,9 @@ const storageInfoRelations = relations(storageInfo, ({ one }) => ({
     fields: [storageInfo.productInfoId],
     references: [productInfo.id],
   }),
-  location: one(location, {
+  location: one(locationTable, {
     fields: [storageInfo.locationId],
-    references: [location.id],
+    references: [locationTable.id],
   }),
 }));
 
@@ -78,21 +78,21 @@ const productInfoRelations = relations(productInfo, ({ one }) => ({
   }),
 }));
 
-const locationRelations = relations(location, ({ one }) => ({
+const locationRelations = relations(locationTable, ({ one }) => ({
   locationInfo: one(locationInfo, {
-    fields: [location.id],
+    fields: [locationTable.id],
     references: [locationInfo.locationId],
   }),
 }));
 
 const locationInfoRelations = relations(locationInfo, ({ one }) => ({
-  location: one(location, {
+  location: one(locationTable, {
     fields: [locationInfo.locationId],
-    references: [location.id],
+    references: [locationTable.id],
   }),
-  parent: one(location, {
+  parent: one(locationTable, {
     fields: [locationInfo.parentId],
-    references: [location.id],
+    references: [locationTable.id],
   }),
 }));
 
@@ -101,7 +101,7 @@ export {
   brand,
   category,
   productInfo,
-  location,
+  locationTable,
   locationInfo,
   storageInfo,
   storageInfoRelations,

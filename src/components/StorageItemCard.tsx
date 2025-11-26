@@ -79,7 +79,13 @@ function StorageItemCard({ storageInfoItem }: StorageItemProps) {
             </span>
           )}
           {storageInfoItem.location.name && (
-            <span className={`bg-indigo-900 label`}>
+            <span
+              className={`${
+                storageInfoItem.location.parentName
+                  ? `bg-indigo-900`
+                  : `bg-slate-800`
+              }  label`}
+            >
               {storageInfoItem.location.name}
             </span>
           )}
