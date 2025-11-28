@@ -11,6 +11,7 @@ async function GetAllStorage(): Promise<StorageItem[]> {
         product: {
           with: {
             brand: true,
+            productName: true,
             unitType: true,
             category: true,
           },
@@ -34,7 +35,7 @@ async function GetAllStorage(): Promise<StorageItem[]> {
       expirationDate: storageInfo.expiration_date ?? "",
       product: {
         id: storageInfo.product.id,
-        name: storageInfo.product.name,
+        name: storageInfo.product.productName?.name ?? "",
         content: storageInfo.product.content ?? 0,
         brand: storageInfo.product.brand?.name,
         unitType: storageInfo.product.unitType?.name,

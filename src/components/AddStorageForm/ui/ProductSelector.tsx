@@ -1,6 +1,6 @@
 import useAddProduct from "../hooks/useAddProduct";
 
-function AddProduct() {
+function ProductSelector() {
   const {
     selectSuggestion,
     handleProductChange,
@@ -38,10 +38,9 @@ function AddProduct() {
             </div>
           )}
         </div>
-        <button className="rounded-md bg-red-900 px-2 py-1">+</button>
       </div>
     </div>
   );
 }
 
-export default AddProduct;
+export default ProductSelector;

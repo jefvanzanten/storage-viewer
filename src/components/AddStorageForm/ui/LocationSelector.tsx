@@ -4,7 +4,6 @@ export type LocationType = "parentLocationId" | "subLocationId";
 
 type LocationSelectorProps = {
   onChange: (locationId: number) => void;
-  openForm: () => void;
   locations: Location[];
   required: boolean;
   type: LocationType;
@@ -12,18 +11,17 @@ type LocationSelectorProps = {
 
 function LocationSelector({
   onChange,
-  openForm,
   locations,
   required,
   type,
 }: LocationSelectorProps) {
   return (
     <div className="flex flex-row gap-2 justify-between items-center">
-      <p>Locatie*</p>
+      <p>Opbergplaats{`${required ? `*` : ``} `}</p>
       <div className="flex gap-2">
         <select
           name={type}
-          className="w-[14em] bg-white text-black"
+          className="w-[14em] py-1 bg-white text-black text-center"
           onChange={(e) => onChange(Number(e.target.value))}
           required
         >
@@ -34,7 +32,6 @@ function LocationSelector({
             </option>
           ))}
         </select>
-        <button className="rounded-md bg-red-900 px-2 py-1">+</button>
       </div>
     </div>
   );

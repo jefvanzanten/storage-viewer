@@ -1,0 +1,1 @@
+CREATE UNIQUE INDEX `location_imgUrl_unique` ON `location` (`imgUrl`);

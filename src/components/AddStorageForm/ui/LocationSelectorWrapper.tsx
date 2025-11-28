@@ -7,7 +7,7 @@ type AddLocationProps = {
   parentLocations: Location[];
 };
 
-function AddLocation({ parentLocations }: AddLocationProps) {
+function LocationSelectorWrapper({ parentLocations }: AddLocationProps) {
   const [subLocations, setSubLocations] = useState<Location[]>([]);
 
   const onParentLocationChange = async (parentLocationId: number) => {
@@ -35,4 +35,4 @@ function AddLocation({ parentLocations }: AddLocationProps) {
   );
 }
 
-export default AddLocation;
+export default LocationSelectorWrapper;

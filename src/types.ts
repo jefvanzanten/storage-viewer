@@ -38,4 +38,21 @@ type LocationInfo = {
   parentName?: string;
 };
 
-export type { StorageInfo, StorageItem, ProductInfo, Location };
+type UnitType = {
+  id: number;
+  name: string;
+};
+
+type DropdownOption = {
+  id: number;
+  name: string;
+};
+
+export type {
+  StorageInfo,
+  StorageItem,
+  ProductInfo,
+  Location,
+  UnitType,
+  DropdownOption,
+};

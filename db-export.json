@@ -1,0 +1,536 @@
+{
+  "unitTypes": [
+    {
+      "id": 1,
+      "name": "kg"
+    },
+    {
+      "id": 2,
+      "name": "g"
+    },
+    {
+      "id": 3,
+      "name": "L"
+    },
+    {
+      "id": 4,
+      "name": "ml"
+    },
+    {
+      "id": 5,
+      "name": "stuks"
+    },
+    {
+      "id": 6,
+      "name": "blikken"
+    }
+  ],
+  "brands": [
+    {
+      "id": 1,
+      "name": "AH"
+    },
+    {
+      "id": 2,
+      "name": "Unox"
+    },
+    {
+      "id": 3,
+      "name": "Coca Cola"
+    },
+    {
+      "id": 4,
+      "name": "Heineken"
+    },
+    {
+      "id": 5,
+      "name": "Maggi"
+    },
+    {
+      "id": 6,
+      "name": "Dr. Oetker"
+    },
+    {
+      "id": 7,
+      "name": "Calvé"
+    }
+  ],
+  "categories": [
+    {
+      "id": 1,
+      "name": "Soep"
+    },
+    {
+      "id": 2,
+      "name": "Drank"
+    },
+    {
+      "id": 3,
+      "name": "Saus"
+    },
+    {
+      "id": 4,
+      "name": "Pizza"
+    },
+    {
+      "id": 5,
+      "name": "Pasta"
+    },
+    {
+      "id": 6,
+      "name": "Conserven"
+    },
+    {
+      "id": 7,
+      "name": "Snacks"
+    }
+  ],
+  "productNames": [
+    {
+      "name": "Tomatensoep"
+    },
+    {
+      "name": "Kippensoep"
+    },
+    {
+      "name": "Cola Zero"
+    },
+    {
+      "name": "Bier"
+    },
+    {
+      "name": "Mayonaise"
+    },
+    {
+      "name": "Pizza Margherita"
+    },
+    {
+      "name": "Spaghetti"
+    }
+  ],
+  "products": [
+    {
+      "id": 1,
+      "name": "Tomatensoep",
+      "content": 400,
+      "imgUrl": null,
+      "brand": 1,
+      "unit_type": 4,
+      "category": 1
+    },
+    {
+      "id": 2,
+      "name": "Kippensoep",
+      "content": 300,
+      "imgUrl": null,
+      "brand": 2,
+      "unit_type": 4,
+      "category": 1
+    },
+    {
+      "id": 3,
+      "name": "Cola Zero",
+      "content": 1.5,
+      "imgUrl": null,
+      "brand": 3,
+      "unit_type": 3,
+      "category": 2
+    },
+    {
+      "id": 4,
+      "name": "Bier",
+      "content": 330,
+      "imgUrl": null,
+      "brand": 4,
+      "unit_type": 4,
+      "category": 2
+    },
+    {
+      "id": 5,
+      "name": "Mayonaise",
+      "content": 500,
+      "imgUrl": null,
+      "brand": 7,
+      "unit_type": 4,
+      "category": 3
+    },
+    {
+      "id": 6,
+      "name": "Pizza Margherita",
+      "content": 350,
+      "imgUrl": null,
+      "brand": 6,
+      "unit_type": 2,
+      "category": 4
+    },
+    {
+      "id": 7,
+      "name": "Spaghetti",
+      "content": 500,
+      "imgUrl": null,
+      "brand": 1,
+      "unit_type": 2,
+      "category": 5
+    }
+  ],
+  "locations": [
+    {
+      "id": 1,
+      "name": "Koelkast huiskamer"
+    },
+    {
+      "id": 2,
+      "name": "Diepvries huiskamer"
+    },
+    {
+      "id": 3,
+      "name": "Voorraadkast huiskamer"
+    },
+    {
+      "id": 4,
+      "name": "Koelkast berging"
+    },
+    {
+      "id": 5,
+      "name": "Diepvries berging"
+    },
+    {
+      "id": 6,
+      "name": "Voorraad berging onder"
+    },
+    {
+      "id": 7,
+      "name": "Bovenste plank"
+    },
+    {
+      "id": 8,
+      "name": "2e plank"
+    },
+    {
+      "id": 9,
+      "name": "3e plank"
+    },
+    {
+      "id": 10,
+      "name": "4e plank"
+    },
+    {
+      "id": 11,
+      "name": "Onderste plank"
+    },
+    {
+      "id": 12,
+      "name": "Bovenste la"
+    },
+    {
+      "id": 13,
+      "name": "2e la"
+    },
+    {
+      "id": 14,
+      "name": "3e la"
+    },
+    {
+      "id": 15,
+      "name": "4e la"
+    },
+    {
+      "id": 16,
+      "name": "Onderste la"
+    },
+    {
+      "id": 17,
+      "name": "Voorraad berging blad"
+    },
+    {
+      "id": 18,
+      "name": "Voorraad berging boven"
+    },
+    {
+      "id": 19,
+      "name": "Linker deur"
+    },
+    {
+      "id": 20,
+      "name": "2e deur"
+    },
+    {
+      "id": 21,
+      "name": "3e deur"
+    },
+    {
+      "id": 22,
+      "name": "Rechter deur"
+    },
+    {
+      "id": 23,
+      "name": "Koelkast berging deur"
+    },
+    {
+      "id": 24,
+      "name": "Koelkast huiskamer deur"
+    },
+    {
+      "id": 25,
+      "name": "La"
+    },
+    {
+      "id": 26,
+      "name": "Vak"
+    }
+  ],
+  "locationInfos": [
+    {
+      "id": 1,
+      "location_id": 7,
+      "parent_id": 1
+    },
+    {
+      "id": 2,
+      "location_id": 8,
+      "parent_id": 1
+    },
+    {
+      "id": 3,
+      "location_id": 9,
+      "parent_id": 1
+    },
+    {
+      "id": 4,
+      "location_id": 11,
+      "parent_id": 1
+    },
+    {
+      "id": 5,
+      "location_id": 11,
+      "parent_id": 24
+    },
+    {
+      "id": 6,
+      "location_id": 9,
+      "parent_id": 24
+    },
+    {
+      "id": 7,
+      "location_id": 8,
+      "parent_id": 24
+    },
+    {
+      "id": 8,
+      "location_id": 7,
+      "parent_id": 24
+    },
+    {
+      "id": 9,
+      "location_id": 16,
+      "parent_id": 1
+    },
+    {
+      "id": 10,
+      "location_id": 12,
+      "parent_id": 1
+    },
+    {
+      "id": 11,
+      "location_id": 16,
+      "parent_id": 2
+    },
+    {
+      "id": 12,
+      "location_id": 12,
+      "parent_id": 2
+    },
+    {
+      "id": 13,
+      "location_id": 11,
+      "parent_id": 2
+    },
+    {
+      "id": 14,
+      "location_id": 10,
+      "parent_id": 2
+    },
+    {
+      "id": 15,
+      "location_id": 9,
+      "parent_id": 2
+    },
+    {
+      "id": 16,
+      "location_id": 8,
+      "parent_id": 2
+    },
+    {
+      "id": 17,
+      "location_id": 7,
+      "parent_id": 2
+    },
+    {
+      "id": 18,
+      "location_id": 11,
+      "parent_id": 23
+    },
+    {
+      "id": 19,
+      "location_id": 8,
+      "parent_id": 23
+    },
+    {
+      "id": 20,
+      "location_id": 7,
+      "parent_id": 23
+    },
+    {
+      "id": 21,
+      "location_id": 25,
+      "parent_id": 4
+    },
+    {
+      "id": 22,
+      "location_id": 11,
+      "parent_id": 4
+    },
+    {
+      "id": 23,
+      "location_id": 9,
+      "parent_id": 4
+    },
+    {
+      "id": 24,
+      "location_id": 8,
+      "parent_id": 4
+    },
+    {
+      "id": 25,
+      "location_id": 7,
+      "parent_id": 4
+    },
+    {
+      "id": 26,
+      "location_id": 11,
+      "parent_id": 5
+    },
+    {
+      "id": 27,
+      "location_id": 8,
+      "parent_id": 5
+    },
+    {
+      "id": 28,
+      "location_id": 7,
+      "parent_id": 5
+    },
+    {
+      "id": 29,
+      "location_id": 26,
+      "parent_id": 5
+    },
+    {
+      "id": 30,
+      "location_id": 22,
+      "parent_id": 18
+    },
+    {
+      "id": 31,
+      "location_id": 20,
+      "parent_id": 18
+    },
+    {
+      "id": 32,
+      "location_id": 19,
+      "parent_id": 18
+    },
+    {
+      "id": 33,
+      "location_id": 22,
+      "parent_id": 6
+    },
+    {
+      "id": 34,
+      "location_id": 21,
+      "parent_id": 6
+    },
+    {
+      "id": 35,
+      "location_id": 20,
+      "parent_id": 6
+    },
+    {
+      "id": 36,
+      "location_id": 19,
+      "parent_id": 6
+    }
+  ],
+  "storage": [
+    {
+      "id": 1,
+      "quantity": 3,
+      "expiration_date": "2026-12-31",
+      "location": 18,
+      "product_info": 1
+    },
+    {
+      "id": 2,
+      "quantity": 2,
+      "expiration_date": "2026-06-30",
+      "location": 18,
+      "product_info": 2
+    },
+    {
+      "id": 3,
+      "quantity": 2,
+      "expiration_date": "2027-03-15",
+      "location": 7,
+      "product_info": 7
+    },
+    {
+      "id": 4,
+      "quantity": 6,
+      "expiration_date": "2026-09-01",
+      "location": 2,
+      "product_info": 3
+    },
+    {
+      "id": 5,
+      "quantity": 24,
+      "expiration_date": "2026-08-15",
+      "location": 3,
+      "product_info": 4
+    },
+    {
+      "id": 6,
+      "quantity": 2,
+      "expiration_date": "2025-12-01",
+      "location": 8,
+      "product_info": 5
+    },
+    {
+      "id": 7,
+      "quantity": 2,
+      "expiration_date": "2026-11-30",
+      "location": 5,
+      "product_info": 6
+    },
+    {
+      "id": 8,
+      "quantity": 1,
+      "expiration_date": null,
+      "location": 1,
+      "product_info": 5
+    },
+    {
+      "id": 9,
+      "quantity": 1,
+      "expiration_date": null,
+      "location": 7,
+      "product_info": 7
+    },
+    {
+      "id": 10,
+      "quantity": 1,
+      "expiration_date": null,
+      "location": 7,
+      "product_info": 1
+    }
+  ]
+}

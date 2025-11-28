@@ -4,30 +4,33 @@ import {
   unitType,
   brand,
   category,
+  productName,
   productInfo,
-  location,
+  locationTable,
   locationInfo,
   storageInfo,
 } from "./schema";
+import * as fs from "fs";
 
-// AI generated seed script so i could test out if the tables worked or not.
-// Not using it anymore
+// Seed script based on exported database data
 
 async function seed() {
   console.log("🌱 Starting seed...");
+
+  // Load exported data
+  const exportData = JSON.parse(
+    fs.readFileSync("db-export.json", "utf-8")
+  ) as any;
 
   // 1. Unit Types
   console.log("📏 Seeding unit types...");
   const unitTypes = await db
     .insert(unitType)
-    .values([
-      { name: "kg" },
-      { name: "g" },
-      { name: "L" },
-      { name: "ml" },
-      { name: "stuks" },
-      { name: "blikken" },
-    ])
+    .values(
+      exportData.unitTypes.map((u: any) => ({
+        name: u.name,
+      }))
+    )
     .returning();
   console.log(`✓ Created ${unitTypes.length} unit types`);
 
@@ -35,15 +38,11 @@ async function seed() {
   console.log("🏷️  Seeding brands...");
   const brands = await db
     .insert(brand)
-    .values([
-      { name: "AH Huismerk" },
-      { name: "Unox" },
-      { name: "Coca Cola" },
-      { name: "Heineken" },
-      { name: "Maggi" },
-      { name: "Dr. Oetker" },
-      { name: "Calvé" },
-    ])
+    .values(
+      exportData.brands.map((b: any) => ({
+        name: b.name,
+      }))
+    )
     .returning();
   console.log(`✓ Created ${brands.length} brands`);
 
@@ -51,168 +50,115 @@ async function seed() {
   console.log("📂 Seeding categories...");
   const categories = await db
     .insert(category)
-    .values([
-      { name: "Soep" },
-      { name: "Drank" },
-      { name: "Saus" },
-      { name: "Pizza" },
-      { name: "Pasta" },
-      { name: "Conserven" },
-    ])
+    .values(
+      exportData.categories.map((c: any) => ({
+        name: c.name,
+      }))
+    )
     .returning();
   console.log(`✓ Created ${categories.length} categories`);
 
-  // 4. Products
+  // 4. Product Names (NIEUW!)
+  console.log("📝 Seeding product names...");
+  const productNames = await db
+    .insert(productName)
+    .values(
+      exportData.productNames.map((pn: any) => ({
+        name: pn.name,
+      }))
+    )
+    .returning();
+  console.log(`✓ Created ${productNames.length} product names`);
+
+  // 5. Products (AANGEPAST - nu met productNameId ipv name)
   console.log("🛒 Seeding products...");
   const products = await db
     .insert(productInfo)
-    .values([
-      {
-        name: "Tomatensoep",
-        content: 400,
-        brandId: brands[0].id,
-        unitTypeId: unitTypes[3].id, // ml
-        categoryId: categories[0].id,
-      },
-      {
-        name: "Kippensoep",
-        content: 300,
-        brandId: brands[1].id,
-        unitTypeId: unitTypes[3].id, // ml
-        categoryId: categories[0].id,
-      },
-      {
-        name: "Cola Zero",
-        content: 1.5,
-        brandId: brands[2].id,
-        unitTypeId: unitTypes[2].id, // L
-        categoryId: categories[1].id,
-      },
-      {
-        name: "Bier",
-        content: 330,
-        brandId: brands[3].id,
-        unitTypeId: unitTypes[3].id, // ml
-        categoryId: categories[1].id,
-      },
-      {
-        name: "Mayonaise",
-        content: 500,
-        brandId: brands[6].id,
-        unitTypeId: unitTypes[3].id, // ml
-        categoryId: categories[2].id,
-      },
-      {
-        name: "Pizza Margherita",
-        content: 350,
-        brandId: brands[5].id,
-        unitTypeId: unitTypes[1].id, // g
-        categoryId: categories[3].id,
-      },
-      {
-        name: "Spaghetti",
-        content: 500,
-        brandId: brands[0].id,
-        unitTypeId: unitTypes[1].id, // g
-        categoryId: categories[4].id,
-      },
-    ])
+    .values(
+      exportData.products.map((p: any) => {
+        // Find productNameId by matching name
+        const productNameRecord = productNames.find(
+          (pn) => pn.name === p.name
+        );
+        const brandRecord = brands.find(
+          (b) => b.id === (p.brand || p.brandId)
+        );
+        const unitTypeRecord = unitTypes.find(
+          (u) => u.id === (p.unit_type || p.unitTypeId)
+        );
+        const categoryRecord = categories.find(
+          (c) => c.id === (p.category || p.categoryId)
+        );
+
+        return {
+          content: p.content,
+          imgUrl: p.imgUrl,
+          productNameId: productNameRecord!.id,
+          brandId: brandRecord?.id,
+          unitTypeId: unitTypeRecord?.id,
+          categoryId: categoryRecord?.id,
+        };
+      })
+    )
     .returning();
   console.log(`✓ Created ${products.length} products`);
 
-  // 5. Locations
+  // 6. Locations
   console.log("📍 Seeding locations...");
   const locations = await db
-    .insert(location)
-    .values([
-      { name: "Keuken" },
-      { name: "Bijkeuken" },
-      { name: "Voorraadkast" },
-      { name: "Koelkast" },
-      { name: "Vriezer" },
-      { name: "Plank 1" },
-      { name: "Plank 2" },
-      { name: "Deur schap" },
-    ])
+    .insert(locationTable)
+    .values(
+      exportData.locations.map((l: any) => ({
+        name: l.name,
+        imgUrl: l.imgUrl,
+      }))
+    )
     .returning();
   console.log(`✓ Created ${locations.length} locations`);
 
-  // 6. Location Hierarchy
+  // 7. Location Hierarchy
   console.log("🏗️  Seeding location hierarchy...");
   const locationInfos = await db
     .insert(locationInfo)
-    .values([
-      // Voorraadkast heeft 2 planken
-      {
-        locationId: locations[5].id, // Plank 1
-        parentId: locations[2].id, // Voorraadkast
-      },
-      {
-        locationId: locations[6].id, // Plank 2
-        parentId: locations[2].id, // Voorraadkast
-      },
-      // Koelkast heeft deur schap
-      {
-        locationId: locations[7].id, // Deur schap
-        parentId: locations[3].id, // Koelkast
-      },
-    ])
+    .values(
+      exportData.locationInfos.map((li: any) => {
+        const locationRecord = locations.find(
+          (l) => l.id === (li.location_id || li.locationId)
+        );
+        const parentRecord = locations.find(
+          (l) => l.id === (li.parent_id || li.parentId)
+        );
+
+        return {
+          locationId: locationRecord?.id,
+          parentId: parentRecord?.id,
+        };
+      })
+    )
     .returning();
   console.log(`✓ Created ${locationInfos.length} location hierarchies`);
 
-  // 7. Storage Info
+  // 8. Storage Info
   console.log("📦 Seeding storage info...");
   const storageInfos = await db
     .insert(storageInfo)
-    .values([
-      // Voorraadkast - Plank 1
-      {
-        quantity: 3,
-        expiration_date: "2026-12-31",
-        locationId: locations[5].id,
-        productInfoId: products[0].id, // Tomatensoep
-      },
-      {
-        quantity: 2,
-        expiration_date: "2026-06-30",
-        locationId: locations[5].id,
-        productInfoId: products[1].id, // Kippensoep
-      },
-      // Voorraadkast - Plank 2
-      {
-        quantity: 500,
-        expiration_date: "2027-03-15",
-        locationId: locations[6].id,
-        productInfoId: products[6].id, // Spaghetti
-      },
-      // Bijkeuken
-      {
-        quantity: 6,
-        expiration_date: "2026-09-01",
-        locationId: locations[1].id,
-        productInfoId: products[2].id, // Cola
-      },
-      {
-        quantity: 24,
-        expiration_date: "2026-08-15",
-        locationId: locations[1].id,
-        productInfoId: products[3].id, // Bier
-      },
-      // Koelkast - Deur schap
-      {
-        quantity: 500,
-        expiration_date: "2025-12-01",
-        locationId: locations[7].id,
-        productInfoId: products[4].id, // Mayonaise
-      },
-      // Vriezer
-      {
-        quantity: 2,
-        expiration_date: "2026-11-30",
-        locationId: locations[4].id,
-        productInfoId: products[5].id, // Pizza
-      },
-    ])
+    .values(
+      exportData.storage.map((s: any) => {
+        const locationRecord = locations.find(
+          (l) => l.id === (s.location || s.locationId)
+        );
+        const productRecord = products.find(
+          (p) => p.id === (s.product_info || s.productInfoId)
+        );
+
+        return {
+          quantity: s.quantity,
+          expiration_date: s.expiration_date,
+          locationId: locationRecord!.id,
+          productInfoId: productRecord!.id,
+        };
+      })
+    )
     .returning();
   console.log(`✓ Created ${storageInfos.length} storage entries`);
 
@@ -221,6 +167,7 @@ async function seed() {
   console.log(`   Unit Types: ${unitTypes.length}`);
   console.log(`   Brands: ${brands.length}`);
   console.log(`   Categories: ${categories.length}`);
+  console.log(`   Product Names: ${productNames.length}`);
   console.log(`   Products: ${products.length}`);
   console.log(`   Locations: ${locations.length}`);
   console.log(`   Location Hierarchies: ${locationInfos.length}`);
